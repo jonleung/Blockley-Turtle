@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<!-- saved from url=(0063)https://blockly-demo.appspot.com/static/apps/turtle/index.html# -->
+<html dir="ltr" lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta name="google" value="notranslate">
+  <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Blockly : Turtle Graphics</title>
+  <link rel="stylesheet" type="text/css" href="./Blockly   Turtle Graphics_files/common.css">
+  <link rel="stylesheet" type="text/css" href="./Blockly   Turtle Graphics_files/style.css">
+  <script type="text/javascript" src="./Blockly   Turtle Graphics_files/soyutils.js"></script><style type="text/css"></style><style type="text/css"></style>
+  <script type="text/javascript" src="./Blockly   Turtle Graphics_files/common.js"></script>
+  <script type="text/javascript" src="./Blockly   Turtle Graphics_files/turtle.js"></script><script type="text/javascript" src="./Blockly   Turtle Graphics_files/en.js"></script>
+
+  <script type="text/javascript" src="./Blockly   Turtle Graphics_files/storage.js"></script>
+<style type="text/css">.blocklySvg {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  overflow: hidden;
+}
+.blocklyWidgetDiv {
+  position: absolute;
+  display: none;
+  z-index: 999;
+}
+.blocklyDraggable {
+  cursor: url(../../media/handopen.cur) 8 5, auto;
+}
+.blocklyResizeSE {
+  fill: #aaa;
+  cursor: se-resize;
+}
+.blocklyResizeSW {
+  fill: #aaa;
+  cursor: sw-resize;
+}
+.blocklyResizeLine {
+  stroke-width: 1;
+  stroke: #888;
+}
+.blocklyHighlightedConnectionPath {
+  stroke-width: 4px;
+  stroke: #fc3;
+  fill: none;
+}
+.blocklyPathLight {
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+.blocklySelected>.blocklyPath {
+  stroke-width: 3px;
+  stroke: #fc3;
+}
+.blocklySelected>.blocklyPathLight {
+  display: none;
+}
+.blocklyDragging>.blocklyPath,
+.blocklyDragging>.blocklyPathLight {
+  fill-opacity: .8;
+  stroke-opacity: .8;
+}
+.blocklyDragging>.blocklyPathDark {
+  display: none;
+}
+.blocklyDisabled>.blocklyPath {
+  fill-opacity: .5;
+  stroke-opacity: .5;
+}
+.blocklyDisabled>.blocklyPathLight,
+.blocklyDisabled>.blocklyPathDark {
+  display: none;
+}
+.blocklyText {
+  cursor: default;
+  font-family: sans-serif;
+  font-size: 11pt;
+  fill: #fff;
+}
+.blocklyNonEditableText>text {
+  pointer-events: none;
+}
+.blocklyNonEditableText>rect,
+.blocklyEditableText>rect {
+  fill: #fff;
+  fill-opacity: .6;
+}
+.blocklyNonEditableText>text,
+.blocklyEditableText>text {
+  fill: #000;
+}
+.blocklyEditableText:hover>rect {
+  stroke-width: 2;
+  stroke: #fff;
+}
+.blocklyBubbleText {
+  fill: #000;
+}
+.blocklySvg text {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: inherit;
+}
+.blocklyHidden {
+  display: none;
+}
+.blocklyFieldDropdown:not(.blocklyHidden) {
+  display: block;
+}
+.blocklyTooltipBackground {
+  fill: #ffffc7;
+  stroke-width: 1px;
+  stroke: #d8d8d8;
+}
+.blocklyTooltipShadow,
+.blocklyDropdownMenuShadow {
+  fill: #bbb;
+  filter: url(#blocklyShadowFilter);
+}
+.blocklyTooltipText {
+  font-family: sans-serif;
+  font-size: 9pt;
+  fill: #000;
+}
+.blocklyIconShield {
+  cursor: default;
+  fill: #00c;
+  stroke-width: 1px;
+  stroke: #ccc;
+}
+.blocklyIconGroup:hover>.blocklyIconShield {
+  fill: #00f;
+  stroke: #fff;
+}
+.blocklyIconGroup:hover>.blocklyIconMark {
+  fill: #fff;
+}
+.blocklyIconMark {
+  cursor: default !important;
+  font-family: sans-serif;
+  font-size: 9pt;
+  font-weight: bold;
+  fill: #ccc;
+  text-anchor: middle;
+}
+.blocklyWarningBody {
+}
+.blocklyMinimalBody {
+  margin: 0;
+  padding: 0;
+}
+.blocklyCommentTextarea {
+  margin: 0;
+  padding: 2px;
+  border: 0;
+  resize: none;
+  background-color: #ffc;
+}
+.blocklyHtmlInput {
+  font-family: sans-serif;
+  font-size: 11pt;
+  border: none;
+  outline: none;
+  width: 100%
+}
+.blocklyMutatorBackground {
+  fill: #fff;
+  stroke-width: 1;
+  stroke: #ddd;
+}
+.blocklyFlyoutBackground {
+  fill: #ddd;
+  fill-opacity: .8;
+}
+.blocklyColourBackground {
+  fill: #666;
+}
+.blocklyScrollbarBackground {
+  fill: #fff;
+  stroke-width: 1;
+  stroke: #e4e4e4;
+}
+.blocklyScrollbarKnob {
+  fill: #ccc;
+}
+.blocklyScrollbarBackground:hover+.blocklyScrollbarKnob,
+.blocklyScrollbarKnob:hover {
+  fill: #bbb;
+}
+.blocklyInvalidInput {
+  background: #faa;
+}
+.blocklyAngleCircle {
+  stroke: #444;
+  stroke-width: 1;
+  fill: #ddd;
+  fill-opacity: .8;
+}
+.blocklyAngleMarks {
+  stroke: #444;
+  stroke-width: 1;
+}
+.blocklyAngleGauge {
+  fill: #f88;
+  fill-opacity: .8;  
+}
+.blocklyAngleLine {
+  stroke: #f00;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+.blocklyContextMenu {
+  border-radius: 4px;
+}
+.blocklyDropdownMenu {
+  padding: 0 !important;
+}
+.blocklyWidgetDiv .goog-option-selected .goog-menuitem-checkbox,
+.blocklyWidgetDiv .goog-option-selected .goog-menuitem-icon {
+  background: url(../../media/sprites.png) no-repeat 0 0 !important;
+}
+.blocklyToolboxDiv {
+  background-color: #ddd;
+  display: none;
+  overflow-x: visible;
+  overflow-y: auto;
+  position: absolute;
+}
+.blocklyTreeRoot {
+  padding: 4px 0;
+}
+.blocklyTreeRoot:focus {
+  outline: none;
+}
+.blocklyTreeRow {
+  line-height: 22px;
+  height: 22px;
+  padding-right: 1em;
+  white-space: nowrap;
+}
+.blocklyToolboxDiv[dir="RTL"] .blocklyTreeRow {
+  padding-right: 0;
+  padding-left: 1em !important;
+}
+.blocklyTreeRow:hover {
+  background-color: #e4e4e4;
+}
+.blocklyTreeIcon {
+  height: 16px;
+  width: 16px;
+  vertical-align: middle;
+  background-image: url(../../media/tree.png);
+}
+.blocklyTreeIconClosedLtr {
+  background-position: -32px -1px;
+}
+.blocklyTreeIconClosedRtl {
+  background-position: 0px -1px;
+}
+.blocklyTreeIconOpen {
+  background-position: -16px -1px;
+}
+.blocklyTreeIconNone {
+  background-position: -48px -1px;
+}
+.blocklyTreeSelected>.blocklyTreeIconClosedLtr {
+  background-position: -32px -17px;
+}
+.blocklyTreeSelected>.blocklyTreeIconClosedRtl {
+  background-position: 0px -17px;
+}
+.blocklyTreeSelected>.blocklyTreeIconOpen {
+  background-position: -16px -17px;
+}
+.blocklyTreeSelected>.blocklyTreeIconNone {
+  background-position: -48px -17px;
+}
+.blocklyTreeLabel {
+  cursor: default;
+  font-family: sans-serif;
+  font-size: 16px;
+  padding: 0 3px;
+  vertical-align: middle;
+}
+.blocklyTreeSelected  {
+  background-color: #57e !important;
+}
+.blocklyTreeSelected .blocklyTreeLabel {
+  color: #fff;
+}
+.blocklyWidgetDiv .goog-palette {
+  outline: none;
+  cursor: default;
+}
+.blocklyWidgetDiv .goog-palette-table {
+  border: 1px solid #666;
+  border-collapse: collapse;
+}
+.blocklyWidgetDiv .goog-palette-cell {
+  height: 13px;
+  width: 15px;
+  margin: 0;
+  border: 0;
+  text-align: center;
+  vertical-align: middle;
+  border-right: 1px solid #666;
+  font-size: 1px;
+}
+.blocklyWidgetDiv .goog-palette-colorswatch {
+  position: relative;
+  height: 13px;
+  width: 15px;
+  border: 1px solid #666;
+}
+.blocklyWidgetDiv .goog-palette-cell-hover .goog-palette-colorswatch {
+  border: 1px solid #FFF;
+}
+.blocklyWidgetDiv .goog-palette-cell-selected .goog-palette-colorswatch {
+  border: 1px solid #000;
+  color: #fff;
+}
+.blocklyWidgetDiv .goog-menu {
+  background: #fff;
+  border-color: #ccc #666 #666 #ccc;
+  border-style: solid;
+  border-width: 1px;
+  cursor: default;
+  font: normal 13px Arial, sans-serif;
+  margin: 0;
+  outline: none;
+  padding: 4px 0;
+  position: absolute;
+  z-index: 20000;
+}
+.blocklyWidgetDiv .goog-menuitem {
+  color: #000;
+  font: normal 13px Arial, sans-serif;
+  list-style: none;
+  margin: 0;
+  padding: 4px 7em 4px 28px;
+  white-space: nowrap;
+}
+.blocklyWidgetDiv .goog-menuitem.goog-menuitem-rtl {
+  padding-left: 7em;
+  padding-right: 28px;
+}
+.blocklyWidgetDiv .goog-menu-nocheckbox .goog-menuitem,
+.blocklyWidgetDiv .goog-menu-noicon .goog-menuitem {
+  padding-left: 12px;
+}
+.blocklyWidgetDiv .goog-menu-noaccel .goog-menuitem {
+  padding-right: 20px;
+}
+.blocklyWidgetDiv .goog-menuitem-content {
+  color: #000;
+  font: normal 13px Arial, sans-serif;
+}
+.blocklyWidgetDiv .goog-menuitem-disabled .goog-menuitem-accel,
+.blocklyWidgetDiv .goog-menuitem-disabled .goog-menuitem-content {
+  color: #ccc !important;
+}
+.blocklyWidgetDiv .goog-menuitem-disabled .goog-menuitem-icon {
+  opacity: 0.3;
+  -moz-opacity: 0.3;
+  filter: alpha(opacity=30);
+}
+.blocklyWidgetDiv .goog-menuitem-highlight,
+.blocklyWidgetDiv .goog-menuitem-hover {
+  background-color: #d6e9f8;
+  border-color: #d6e9f8;
+  border-style: dotted;
+  border-width: 1px 0;
+  padding-bottom: 3px;
+  padding-top: 3px;
+}
+.blocklyWidgetDiv .goog-menuitem-checkbox,
+.blocklyWidgetDiv .goog-menuitem-icon {
+  background-repeat: no-repeat;
+  height: 16px;
+  left: 6px;
+  position: absolute;
+  right: auto;
+  vertical-align: middle;
+  width: 16px;
+}
+.blocklyWidgetDiv .goog-menuitem-rtl .goog-menuitem-checkbox,
+.blocklyWidgetDiv .goog-menuitem-rtl .goog-menuitem-icon {
+  left: auto;
+  right: 6px;
+}
+.blocklyWidgetDiv .goog-option-selected .goog-menuitem-checkbox,
+.blocklyWidgetDiv .goog-option-selected .goog-menuitem-icon {
+  background: url(//ssl.gstatic.com/editor/editortoolbar.png) no-repeat -512px 0;
+}
+.blocklyWidgetDiv .goog-menuitem-accel {
+  color: #999;
+  direction: ltr;
+  left: auto;
+  padding: 0 6px;
+  position: absolute;
+  right: 0;
+  text-align: right;
+}
+.blocklyWidgetDiv .goog-menuitem-rtl .goog-menuitem-accel {
+  left: 0;
+  right: auto;
+  text-align: left;
+}
+.blocklyWidgetDiv .goog-menuitem-mnemonic-hint {
+  text-decoration: underline;
+}
+.blocklyWidgetDiv .goog-menuitem-mnemonic-separator {
+  color: #999;
+  font-size: 12px;
+  padding-left: 4px;
+}
+.blocklyWidgetDiv .goog-menuseparator {
+  border-top: 1px solid #ccc;
+  margin: 4px 0;
+  padding: 0;
+}
+</style><link rel="stylesheet" type="text/css" href="./Blockly   Turtle Graphics_files/prettify.css"><script type="text/javascript" src="./Blockly   Turtle Graphics_files/prettify.js"></script></head>
+<body class=" hasGoogleVoiceExt">
+  <script type="text/javascript">
+    document.write(turtlepage.start({}, null,
+        {lang: BlocklyApps.LANG,
+         langSrc: BlocklyApps.languagePack()}));
+  </script><div style="display: none"><span id="subtitle">a visual programming environment</span><span id="blocklyMessage">Blockly</span><span id="codeTooltip">See generated JavaScript code.</span><span id="linkTooltip">Save and link to blocks.</span><span id="runTooltip">Run the program defined by the blocks in the workspace.</span><span id="runProgram">Run Program</span><span id="resetProgram">Reset</span><span id="dialogOk">OK</span><span id="dialogCancel">Cancel</span><span id="catLogic">Logic</span><span id="catLoops">Loops</span><span id="catMath">Math</span><span id="catText">Text</span><span id="catLists">Lists</span><span id="catColour">Colour</span><span id="catVariables">Variables</span><span id="catProcedures">Functions</span><span id="httpRequestError">There was a problem with the request.</span><span id="linkAlert">Share your blocks with this link:
+
+%1</span><span id="hashError">Sorry, '%1' doesn't correspond with any saved program.</span><span id="xmlError">Could not load your saved file.  Perhaps it was created with a different version of Blockly?</span><span id="listVariable">list</span><span id="textVariable">text</span></div><div style="display: none"><span id="Turtle_moveTooltip">Moves the turtle forward or backward by the specified amount.</span><span id="Turtle_moveForward">move forward by</span><span id="Turtle_moveBackward">move backward by</span><span id="Turtle_turnTooltip">Turns the turtle left or right by the specified number of degrees.</span><span id="Turtle_turnRight">turn right by</span><span id="Turtle_turnLeft">turn left by</span><span id="Turtle_widthTooltip">Changes the width of the pen.</span><span id="Turtle_setWidth">set width to</span><span id="Turtle_colourTooltip">Changes the colour of the pen.</span><span id="Turtle_setColour">set colour to</span><span id="Turtle_penTooltip">Lifts or lowers the pen, to stop or start drawing.</span><span id="Turtle_penUp">pen up</span><span id="Turtle_penDown">pen down</span><span id="Turtle_turtleVisibilityTooltip">Makes the turtle (circle and arrow) visible or invisible.</span><span id="Turtle_hideTurtle">hide turtle</span><span id="Turtle_showTurtle">show turtle</span><span id="Turtle_printHelpUrl">https://en.wikipedia.org/wiki/Printing</span><span id="Turtle_printTooltip">Draws text in the turtle's direction at its location.</span><span id="Turtle_print">print</span><span id="Turtle_fontHelpUrl">https://en.wikipedia.org/wiki/Font</span><span id="Turtle_fontTooltip">Sets the font used by the print block.</span><span id="Turtle_font">font</span><span id="Turtle_fontSize">font size</span><span id="Turtle_fontNormal">normal</span><span id="Turtle_fontBold">bold</span><span id="Turtle_fontItalic">italic</span><span id="Turtle_unloadWarning">Leaving this page will result in the loss of your work.</span></div><table width="100%"><tbody><tr><td><h1><span id="title"><a href="https://blockly-demo.appspot.com/static/apps/index.html?lang=en">Blockly</a> : Turtle Graphics</span></h1></td><td class="farSide"><select id="languageMenu"><option value="ms">Bahasa Melayu</option><option value="ca">Català</option><option value="da">Dansk</option><option value="de">Deutsch</option><option value="en">English</option><option value="es">Español</option><option value="fr">Français</option><option value="hrx">Hunsriqueano Riograndense</option><option value="it">Italiano</option><option value="hu">Magyar</option><option value="nl">Nederlands, Vlaams</option><option value="pms">Piemontèis</option><option value="pl">Polski</option><option value="pt-br">Português Brasileiro</option><option value="ro">Română</option><option value="sco">Scots</option><option value="sv">Svenska</option><option value="vi">Tiếng Việt</option><option value="tr">Türkçe</option><option value="is">Íslenska</option><option value="cs">Česky</option><option value="el">Ελληνικά</option><option value="ru">Русский</option><option value="uk">Українська</option><option value="ar">العربية</option><option value="fa">فارسی</option><option value="hi">हिन्दी</option><option value="zh-hant">正體中文</option><option value="zh-hans">簡體中文</option><option value="ko">한국어</option></select></td></tr></tbody></table><div id="visualization"><canvas id="scratch" width="400" height="400" style="display: none"></canvas><canvas id="display" width="400" height="400"></canvas></div><table style="padding-top: 1em;"><tbody><tr><td style="width: 190px; text-align: center; vertical-align: top;"><script type="text/javascript" src="./Blockly   Turtle Graphics_files/slider.js"></script><svg id="slider" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="150" height="50"><!-- Slow icon. --><!-- Extra SVG is temporary hack to fix bug #349701 in Chrome 34. --><!-- Harmless for other browsers. --><svg xmlns="http://www.w3.org/2000/svg" version="1.1"><clippath id="slowClipPath"><rect width="26" height="12" x="5" y="14"></rect></clippath><image xlink:href="icons.png" height="42" width="84" x="-21" y="-10" clip-path="url(#slowClipPath)"></image></svg><!-- Fast icon. --><!-- Extra SVG is temporary hack to fix bug #349701 in Chrome 34. --><!-- Harmless for other browsers. --><svg xmlns="http://www.w3.org/2000/svg" version="1.1"><clippath id="fastClipPath"><rect width="26" height="16" x="120" y="10"></rect></clippath><image xlink:href="icons.png" height="42" width="84" x="120" y="-11" clip-path="url(#fastClipPath)"></image></svg><line class="sliderTrack" x1="10" y1="35" x2="140" y2="35"></line><rect style="opacity: 0" x="-10" y="15" width="170" height="40" rx="20" ry="20"></rect><path class="sliderKnob" d="m 0,0 l -8,8 v 12 h 16 v -12 z" transform="translate(75,23)"></path><circle style="opacity: 0" r="20" cy="35" cx="75"></circle></svg></td><td style="width: 15px;"><img id="spinner" style="visibility: hidden;" src="./Blockly   Turtle Graphics_files/loading.gif" height="15" width="15"></td><td style="width: 190px; text-align: center"><button id="runButton" class="primary" title="Makes the turtle do what the blocks say." style="display: none;"><img src="./Blockly   Turtle Graphics_files/1x1.gif" class="run icon21">Run Program</button><button id="resetButton" class="primary" style="display: inline; min-width: 156px;"><img src="./Blockly   Turtle Graphics_files/1x1.gif" class="stop icon21"> Reset</button></td></tr></tbody></table><div id="toolbarDiv"><button id="codeButton" class="notext" title="See generated JavaScript code."><img src="./Blockly   Turtle Graphics_files/1x1.gif" class="code icon21"></button><button id="linkButton" class="notext" title="Save and link to blocks."><img src="./Blockly   Turtle Graphics_files/1x1.gif" class="link icon21"></button><button class="disabled" id="captureButton" title="Save the drawing."><img src="./Blockly   Turtle Graphics_files/1x1.gif" class="img icon21"></button><a id="downloadImageLink" download="drawing.png"></a></div><script type="text/javascript" src="./Blockly   Turtle Graphics_files/blockly_compressed.js"></script><script type="text/javascript" src="./Blockly   Turtle Graphics_files/blocks_compressed.js"></script><script type="text/javascript" src="./Blockly   Turtle Graphics_files/javascript_compressed.js"></script><script type="text/javascript" src="./Blockly   Turtle Graphics_files/en(1).js"></script><script type="text/javascript" src="./Blockly   Turtle Graphics_files/blocks.js"></script><xml id="toolbox" style="display: none"><category name="Turtle"><block type="draw_move"><value name="VALUE"><block type="math_number"><field name="NUM">10</field></block></value></block><block type="draw_turn"><value name="VALUE"><block type="math_number"><field name="NUM">90</field></block></value></block><block type="draw_width"><value name="WIDTH"><block type="math_number"><field name="NUM">1</field></block></value></block><block type="draw_pen"></block><block type="turtle_visibility"></block><block type="draw_print"><value name="TEXT"><block type="text"></block></value></block><block type="draw_font"></block></category><category name="Colour"><block type="draw_colour"><value name="COLOUR"><block type="colour_picker"></block></value></block><block type="colour_picker"></block><block type="colour_random"></block><block type="colour_rgb"></block><block type="colour_blend"></block></category><category name="Logic"><block type="controls_if"></block><block type="logic_compare"></block><block type="logic_operation"></block><block type="logic_negate"></block><block type="logic_boolean"></block><block type="logic_ternary"></block></category><category name="Loops"><block type="controls_repeat_ext"><value name="TIMES"><block type="math_number"><field name="NUM">10</field></block></value></block><block type="controls_whileUntil"></block><block type="controls_for"><value name="FROM"><block type="math_number"><field name="NUM">1</field></block></value><value name="TO"><block type="math_number"><field name="NUM">10</field></block></value><value name="BY"><block type="math_number"><field name="NUM">1</field></block></value></block><block type="controls_forEach"></block><block type="controls_flow_statements"></block></category><category name="Math"><block type="math_number"></block><block type="math_arithmetic"></block><block type="math_single"></block><block type="math_trig"></block><block type="math_constant"></block><block type="math_number_property"></block><block type="math_change"><value name="DELTA"><block type="math_number"><field name="NUM">1</field></block></value></block><block type="math_round"></block><block type="math_on_list"></block><block type="math_modulo"></block><block type="math_constrain"><value name="LOW"><block type="math_number"><field name="NUM">1</field></block></value><value name="HIGH"><block type="math_number"><field name="NUM">100</field></block></value></block><block type="math_random_int"><value name="FROM"><block type="math_number"><field name="NUM">1</field></block></value><value name="TO"><block type="math_number"><field name="NUM">100</field></block></value></block><block type="math_random_float"></block></category><category name="Lists"><block type="lists_create_empty"></block><block type="lists_create_with"></block><block type="lists_repeat"><value name="NUM"><block type="math_number"><field name="NUM">5</field></block></value></block><block type="lists_length"></block><block type="lists_isEmpty"></block><block type="lists_indexOf"><value name="VALUE"><block type="variables_get"><field name="VAR">list</field></block></value></block><block type="lists_getIndex"><value name="VALUE"><block type="variables_get"><field name="VAR">list</field></block></value></block><block type="lists_setIndex"><value name="LIST"><block type="variables_get"><field name="VAR">list</field></block></value></block><block type="lists_getSublist"><value name="LIST"><block type="variables_get"><field name="VAR">list</field></block></value></block></category><category name="Variables" custom="VARIABLE"></category><category name="Functions" custom="PROCEDURE"></category></xml><div id="blockly" dir="LTR" style="top: 61px; left: 420px; width: 1480px;"><div class="blocklyToolboxDiv" dir="LTR" style="display: block; height: 849px;"><div class="blocklyTreeRoot" id=":0" role="tree" aria-selected="false" aria-expanded="false" aria-level="0" aria-labelledby=":0.label" hidefocus="true" tabindex="0" aria-activedescendant=":4"><div class="blocklyTreeRow blocklyHidden" style="padding-left:0px"><span style="display:inline-block" class="" role="presentation"></span><span class="blocklyTreeLabel" id=":0.label"></span><span></span></div><div style="background-position:-100px 0;" role="group"><div class="" id=":1" role="treeitem" aria-selected="false" aria-expanded="false" aria-level="1" aria-labelledby=":1.label" aria-setsize="8" aria-posinset="1"><div class="blocklyTreeRow" style="padding-left:0px"><span role="presentation"></span><span style="display:inline-block" class="blocklyTreeIcon blocklyTreeIconNone" role="presentation"></span><span class="blocklyTreeLabel" id=":1.label">Turtle</span><span></span></div><div style="background-position:0px 0;display:none;" role="group"></div></div><div class="" id=":2" role="treeitem" aria-selected="false" aria-expanded="false" aria-level="1" aria-labelledby=":2.label" aria-setsize="8" aria-posinset="2"><div class="blocklyTreeRow" style="padding-left:0px"><span role="presentation"></span><span style="display:inline-block" class="blocklyTreeIcon blocklyTreeIconNone" role="presentation"></span><span class="blocklyTreeLabel" id=":2.label">Colour</span><span></span></div><div style="background-position:0px 0;display:none;" role="group"></div></div><div class="" id=":3" role="treeitem" aria-selected="false" aria-expanded="false" aria-level="1" aria-labelledby=":3.label" aria-setsize="8" aria-posinset="3"><div class="blocklyTreeRow" style="padding-left:0px"><span role="presentation"></span><span style="display:inline-block" class="blocklyTreeIcon blocklyTreeIconNone" role="presentation"></span><span class="blocklyTreeLabel" id=":3.label">Logic</span><span></span></div><div style="background-position:0px 0;display:none;" role="group"></div></div><div class="" id=":4" role="treeitem" aria-selected="false" aria-expanded="false" aria-level="1" aria-labelledby=":4.label" aria-setsize="8" aria-posinset="4"><div class="blocklyTreeRow" style="padding-left:0px"><span role="presentation"></span><span style="display:inline-block" class="blocklyTreeIcon blocklyTreeIconNone" role="presentation"></span><span class="blocklyTreeLabel" id=":4.label">Loops</span><span></span></div><div style="background-position:0px 0;display:none;" role="group"></div></div><div class="" id=":5" role="treeitem" aria-selected="false" aria-expanded="false" aria-level="1" aria-labelledby=":5.label" aria-setsize="8" aria-posinset="5"><div class="blocklyTreeRow" style="padding-left:0px"><span role="presentation"></span><span style="display:inline-block" class="blocklyTreeIcon blocklyTreeIconNone" role="presentation"></span><span class="blocklyTreeLabel" id=":5.label">Math</span><span></span></div><div style="background-position:0px 0;display:none;" role="group"></div></div><div class="" id=":6" role="treeitem" aria-selected="false" aria-expanded="false" aria-level="1" aria-labelledby=":6.label" aria-setsize="8" aria-posinset="6"><div class="blocklyTreeRow" style="padding-left:0px"><span role="presentation"></span><span style="display:inline-block" class="blocklyTreeIcon blocklyTreeIconNone" role="presentation"></span><span class="blocklyTreeLabel" id=":6.label">Lists</span><span></span></div><div style="background-position:0px 0;display:none;" role="group"></div></div><div class="" id=":7" role="treeitem" aria-selected="false" aria-expanded="false" aria-level="1" aria-labelledby=":7.label" aria-setsize="8" aria-posinset="7"><div class="blocklyTreeRow" style="padding-left:0px"><span role="presentation"></span><span style="display:inline-block" class="blocklyTreeIcon blocklyTreeIconNone" role="presentation"></span><span class="blocklyTreeLabel" id=":7.label">Variables</span><span></span></div><div style="background-position:0px 0;display:none;" role="group"></div></div><div class="" id=":8" role="treeitem" aria-selected="false" aria-expanded="false" aria-level="1" aria-labelledby=":8.label" aria-setsize="8" aria-posinset="8"><div class="blocklyTreeRow" style="padding-left:0px"><span role="presentation"></span><span style="display:inline-block" class="blocklyTreeIcon blocklyTreeIconNone" role="presentation"></span><span class="blocklyTreeLabel" id=":8.label">Functions</span><span></span></div><div style="background-position:-100px 0;display:none;" role="group"></div></div></div></div></div><svg xmlns="http://www.w3.org/2000/svg" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="blocklySvg" width="1480px" height="848px" style=""><defs><filter id="blocklyEmboss"><fegaussianblur in="SourceAlpha" stdDeviation="1" result="blur"></fegaussianblur><fespecularlighting in="blur" surfaceScale="1" specularConstant="0.5" specularExponent="10" lighting-color="white" result="specOut"><fepointlight x="-5000" y="-10000" z="20000"></fepointlight></fespecularlighting><fecomposite in="specOut" in2="SourceAlpha" operator="in" result="specOut"></fecomposite><fecomposite in="SourceGraphic" in2="specOut" operator="arithmetic" k1="0" k2="1" k3="1" k4="0"></fecomposite></filter><filter id="blocklyTrashcanShadowFilter"><fegaussianblur in="SourceAlpha" stdDeviation="2" result="blur"></fegaussianblur><feoffset in="blur" dx="1" dy="1" result="offsetBlur"></feoffset><femerge><femergenode in="offsetBlur"></femergenode><femergenode in="SourceGraphic"></femergenode></femerge></filter><filter id="blocklyShadowFilter"><fegaussianblur stdDeviation="2"></fegaussianblur></filter><pattern id="blocklyDisabledPattern" patternUnits="userSpaceOnUse" width="10" height="10"><rect width="10" height="10" fill="#aaa"></rect><path d="M 0 0 L 10 10 M 10 0 L 0 10" stroke="#cc0"></path></pattern></defs><g><g filter="url(#blocklyTrashcanShadowFilter)" transform="translate(1398,753)"><image width="47" height="45" xlink:href="../../media/trashbody.png" y="15"></image><image width="47" height="15" xlink:href="../../media/trashlid.png"></image></g><g transform="translate(424,-245.9999999999999)"><g class="blocklyDraggable" transform="translate(-166, 329)"><path class="blocklyPathDark" transform="translate(1, 1)" fill="#376437" d="m 0,8 A 8,8 0 0,1 8,0 H 15 l 6,4 3,0 6,-4 H 66 H 152 v 36 H 66 l -6,4 -3,0 -6,-4 h -7 a 8,8 0 0,0 -8,8 v 39 a 8,8 0 0,0 8,8 H 66 v 10 H 30 l -6,4 -3,0 -6,-4 H 8 a 8,8 0 0,1 -8,-8 z
+M 97,5 h -30 v 5 c 0,10 -8,-8 -8,7.5 s 8,-2.5 8,7.5 v 7 h 30 z"></path><path class="blocklyPath" fill="#5ba65b" d="m 0,8 A 8,8 0 0,1 8,0 H 15 l 6,4 3,0 6,-4 H 66 H 152 v 36 H 66 l -6,4 -3,0 -6,-4 h -7 a 8,8 0 0,0 -8,8 v 39 a 8,8 0 0,0 8,8 H 66 v 10 H 30 l -6,4 -3,0 -6,-4 H 8 a 8,8 0 0,1 -8,-8 z
+M 97,5 h -30 v 5 c 0,10 -8,-8 -8,7.5 s 8,-2.5 8,7.5 v 7 h 30 z"></path><path class="blocklyPathLight" stroke="#8cc18c" d="m 1,7 A 7,7 0 0,1 8,1 H 15 l 6.5,4 2,0 6.5,-4 H 66 M 65,1 H 152 M 65,37 M 37.63603896932107,89.36396103067892 a 9,9 0 0,0 6.363961030678928,2.636038969321072 H 66 M 3.050252531694167,97.94974746830583 A 7,7 0 0,1 1,93 V 8
+M 98,6 v 27 h -30 M 61.8,24.6 l 3.36,-1.8"></path><text class="blocklyText" transform="translate(10, 23)">repeat</text><text class="blocklyText" transform="translate(107, 23)">times</text><text class="blocklyText" transform="translate(10, 54)">do</text><g class="blocklyDraggable" transform="translate(68, 6)" style=""><path class="blocklyPathDark" transform="translate(1, 1)" fill="#373e64" d="m 0,0 H 28 v 25 H 0 V 20 c 0,-10 -8,8 -8,-7.5 s 8,2.5 8,-7.5 z
+"></path><path class="blocklyPath" fill="#5b68a6" d="m 0,0 H 28 v 25 H 0 V 20 c 0,-10 -8,8 -8,-7.5 s 8,2.5 8,-7.5 z
+"></path><path class="blocklyPathLight" stroke="#8c95c1" d="m 1,1 H 28 M 27,1 M 1,25 V 19 m -7.36,-1 q -1.52,-5.5 0,-11 m 7.36,1 V 1 H 2
+"></path><g class="blocklyEditableText" transform="translate(10, 18)" style="cursor: text;"><rect rx="4" ry="4" x="-5" y="-12" height="16" width="18"></rect><text class="blocklyText">4</text></g></g><g class="blocklyDraggable" transform="translate(36, 37)"><path class="blocklyPathDark" transform="translate(1, 1)" fill="#376455" d="m 0,8 A 8,8 0 0,1 8,0 H 15 l 6,4 3,0 6,-4 H 162.580078125 v 5 c 0,10 -8,-8 -8,7.5 s 8,-2.5 8,7.5 v 5 H 30 l -6,4 -3,0 -6,-4 H 0 z
+"></path><path class="blocklyPath" fill="#5ba68d" d="m 0,8 A 8,8 0 0,1 8,0 H 15 l 6,4 3,0 6,-4 H 162.580078125 v 5 c 0,10 -8,-8 -8,7.5 s 8,-2.5 8,7.5 v 5 H 30 l -6,4 -3,0 -6,-4 H 0 z
+"></path><path class="blocklyPathLight" stroke="#8cc1af" d="m 1,7 A 7,7 0 0,1 8,1 H 15 l 6.5,4 2,0 6.5,-4 H 162.580078125 M 161.580078125,1 M 158.380078125,19.6 l 3.36,-1.8 M 1,25 V 8
+"></path><text class="blocklyText" transform="translate(10, 18)">move</text><g class="blocklyEditableText" transform="translate(56, 18)" style="cursor: default;"><rect rx="4" ry="4" x="-5" y="-12" height="16" width="72.580078125"></rect><text class="blocklyText">forward<tspan style="fill: rgb(91, 166, 141);"> ▾</tspan></text></g><text class="blocklyText" transform="translate(128.580078125, 18)">by</text><g class="blocklyDraggable" transform="translate(164, 0)"><path class="blocklyPathDark" transform="translate(1, 1)" fill="#373e64" d="m 0,0 H 44 v 25 H 0 V 20 c 0,-10 -8,8 -8,-7.5 s 8,2.5 8,-7.5 z
+"></path><path class="blocklyPath" fill="#5b68a6" d="m 0,0 H 44 v 25 H 0 V 20 c 0,-10 -8,8 -8,-7.5 s 8,2.5 8,-7.5 z
+"></path><path class="blocklyPathLight" stroke="#8c95c1" d="m 1,1 H 44 M 43,1 M 1,25 V 19 m -7.36,-1 q -1.52,-5.5 0,-11 m 7.36,1 V 1 H 2
+"></path><g class="blocklyEditableText" transform="translate(10, 18)" style="cursor: text;"><rect rx="4" ry="4" x="-5" y="-12" height="16" width="34"></rect><text class="blocklyText">100</text></g></g><g class="blocklyDraggable" transform="translate(0, 26)"><path class="blocklyPathDark" transform="translate(1, 1)" fill="#376455" d="m 0,0 H 15 l 6,4 3,0 6,-4 H 140.580078125 v 5 c 0,10 -8,-8 -8,7.5 s 8,-2.5 8,7.5 v 5 H 30 l -6,4 -3,0 -6,-4 H 8 a 8,8 0 0,1 -8,-8 z
+"></path><path class="blocklyPath" fill="#5ba68d" d="m 0,0 H 15 l 6,4 3,0 6,-4 H 140.580078125 v 5 c 0,10 -8,-8 -8,7.5 s 8,-2.5 8,7.5 v 5 H 30 l -6,4 -3,0 -6,-4 H 8 a 8,8 0 0,1 -8,-8 z
+"></path><path class="blocklyPathLight" stroke="#8cc1af" d="m 1,1 H 15 l 6.5,4 2,0 6.5,-4 H 140.580078125 M 139.580078125,1 M 136.380078125,19.6 l 3.36,-1.8 M 3.050252531694167,21.949747468305834 A 7,7 0 0,1 1,17 V 1
+"></path><text class="blocklyText" transform="translate(10, 18)">turn</text><g class="blocklyEditableText" transform="translate(45, 18)" style="cursor: default;"><rect rx="4" ry="4" x="-5" y="-12" height="16" width="87.580078125"></rect><text class="blocklyText">right&nbsp;by&nbsp;↻<tspan style="fill: rgb(91, 166, 141);"> ▾</tspan></text></g><g class="blocklyDraggable" transform="translate(142, 0)"><path class="blocklyPathDark" transform="translate(1, 1)" fill="#373e64" d="m 0,0 H 36 v 25 H 0 V 20 c 0,-10 -8,8 -8,-7.5 s 8,2.5 8,-7.5 z
+"></path><path class="blocklyPath" fill="#5b68a6" d="m 0,0 H 36 v 25 H 0 V 20 c 0,-10 -8,8 -8,-7.5 s 8,2.5 8,-7.5 z
+"></path><path class="blocklyPathLight" stroke="#8c95c1" d="m 1,1 H 36 M 35,1 M 1,25 V 19 m -7.36,-1 q -1.52,-5.5 0,-11 m 7.36,1 V 1 H 2
+"></path><g class="blocklyEditableText" transform="translate(10, 18)" style="cursor: text;"><rect rx="4" ry="4" x="-5" y="-12" height="16" width="26"></rect><text class="blocklyText">90</text></g></g></g></g></g></g><g transform="translate(424,-245.9999999999999)"></g><rect height="15" width="15" style="fill: #fff" x="1465" y="833"></rect><g transform="translate(1465, 0)"><rect class="blocklyScrollbarBackground" width="15" height="833"></rect><rect class="blocklyScrollbarKnob" rx="4" ry="4" width="9" x="3" height="452.8102564102564" y="343.8794871794871"></rect></g><g transform="translate(107, 833)"><rect class="blocklyScrollbarBackground" height="15" width="1358"></rect><rect class="blocklyScrollbarKnob" rx="4" ry="4" height="9" y="3" width="754.5665722379604" x="528.6912181303117"></rect></g></g><g transform="translate(107,0)" style="display: none;"><path class="blocklyFlyoutBackground" d="M 0,0 h 372.580078125 a 8 8 0 0 1 8 8 v 648 a 8 8 0 0 1 -8 8 h -372.580078125 z"></path><g><g transform="translate(0,8)"></g><g></g><g display="none" transform="translate(365.580078125, 8)"><rect class="blocklyScrollbarBackground" width="15" height="648"></rect><rect class="blocklyScrollbarKnob" rx="4" ry="4" width="9" x="3" height="1019.1844660194174" y="0"></rect></g></g></g><g class="blocklyHidden" transform="translate(162,144)" style="display: none;"><rect class="blocklyTooltipShadow" x="2" y="2" width="265" height="14.015625"></rect><rect class="blocklyTooltipBackground" width="265" height="14.015625"></rect><text class="blocklyTooltipText"><tspan dy="1em" x="5">While a value is true, then do some statements.</tspan></text></g></svg></div><div id="dialogShadow" class="dialogAnimate" style="visibility: hidden; opacity: 0;"></div><div id="dialogBorder" class="dialogAnimate" style="width: 43px; height: 43px; left: 160px; top: 564px; opacity: 0.2; visibility: hidden;"></div><div id="dialog" style="width: 40%; left: 30%; top: 5em; visibility: hidden; z-index: -1;"></div>
+
+
+<div class="blocklyWidgetDiv" style="direction: ltr; display: none; width: auto; left: 1055px; top: 191px;"></div><iframe id="rdbIndicator" width="100%" height="270" border="0" src="./Blockly   Turtle Graphics_files/indicator.html" style="display: none; border: 0; position: fixed; left: 0; top: 0; z-index: 2147483647"></iframe><div id="dialogStorage" class=" dialogHiddenContent"><div id="containerStorage"><p>Share your blocks with this link:</p><p></p><p>https://blockly-demo.appspot.com/static/apps/turtle/index.html#smbhrc</p></div><div class="farSide" style="padding: 1ex 3ex 0"><button class="secondary" onclick="BlocklyApps.hideDialog(true)">OK</button></div></div><div id="dialogCode" class=" dialogHiddenContent"><pre id="containerCode"><span class="kwd">for</span><span class="pln"> </span><span class="pun">(</span><span class="kwd">var</span><span class="pln"> count </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span><span class="pln"> count </span><span class="pun">&lt;</span><span class="pln"> </span><span class="lit">4</span><span class="pun">;</span><span class="pln"> count</span><span class="pun">++)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  </span><span class="typ">Turtle</span><span class="pun">.</span><span class="pln">moveForward</span><span class="pun">(</span><span class="lit">100</span><span class="pun">);</span><span class="pln">
+  </span><span class="typ">Turtle</span><span class="pun">.</span><span class="pln">turnRight</span><span class="pun">(</span><span class="lit">90</span><span class="pun">);</span><span class="pln">
+</span><span class="pun">}</span></pre><div class="farSide" style="padding: 1ex 3ex 0"><button class="secondary" onclick="BlocklyApps.hideDialog(true)">OK</button></div></div></body></html>
