@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="google" value="notranslate">
+  <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Blockly : Turtle Graphics</title>
+  <link rel="stylesheet" type="text/css" href="../common.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
+
+  <script type="text/javascript" src="jquery-1.11.1.min.js"></script>
+  <script type="text/javascript" src="../_soy/soyutils.js"></script>
+  <script type="text/javascript" src="../common.js"></script>
+  <script type="text/javascript" src="turtle.js"></script>
+  <script type="text/javascript" src="turtle_mod.js"></script>
+  <script type="text/javascript" src="storage.js"></script>
+
+  <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+
+  <style type="text/css" media="screen">
+      
+      #blockly {
+        z-index: 0;
+      }
+
+      body {
+        margin-top: -60px;
+      }
+
+      #editor { 
+        width: 50%;
+        min-width: 400px;
+        max-width: 520px;
+        height: 275px;
+        border: 1px solid #DDD;
+        border-radius: 4px;
+        border-bottom-right-radius: 0px;
+        margin-top: 5px;
+        height: 525px;
+
+        z-index: 99999;
+}
+  </style>
+
+
+</head>
+<body>
+  <script type="text/javascript">
+    document.write(turtlepage.start({}, null,
+        { lang: BlocklyApps.LANG,
+          langSrc: BlocklyApps.languagePack()}));
+  </script>
+  <!-- <textarea id="custom-code" style="font-family: courier" cols="54" rows="10" placeholder="Your custom Javascript code here."></textarea> -->
+
+  <div id="editor"></div>
+      
+  <script src="http://ace.c9.io/build/src/ace.js" type="text/javascript" charset="utf-8"></script>
+  <script>
+      var editor = ace.edit("editor");
+      editor.setTheme("ace/theme/monokai");
+      editor.getSession().setMode("ace/mode/javascript");
+  </script>
+
+
+</body>
+</html>
