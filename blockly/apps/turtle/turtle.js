@@ -27,6 +27,7 @@
  * Create a namespace for the application.
  */
 var Turtle = {};
+Turtle.blockMode = false;
 
 // Supported languages.
 BlocklyApps.LANGUAGES =
@@ -137,6 +138,7 @@ window.addEventListener('load', Turtle.init);
  * pending tasks.
  */
 Turtle.reset = function() {
+  Turtle.moving = false;
   // Starting location and heading of the turtle.
   Turtle.x = Turtle.HEIGHT / 2;
   Turtle.y = Turtle.WIDTH / 2;
@@ -158,6 +160,8 @@ Turtle.reset = function() {
     window.clearTimeout(Turtle.pid);
   }
   Turtle.pid = 0;
+
+  Turtle.blockMode = true;
 };
 
 /**
@@ -214,6 +218,7 @@ Turtle.display = function() {
  * Click the run button.  Start the program.
  */
 Turtle.runButtonClick = function() {
+  Turtle.blockMode = true;
   var runButton = document.getElementById('runButton');
   var resetButton = document.getElementById('resetButton');
   // Ensure that Reset button is at least as wide as Run button.
@@ -243,6 +248,7 @@ Turtle.resetButtonClick = function() {
  * Execute the user's code.  Heaven help us...
  */
 Turtle.execute = function() {
+  Turtle.manualOverride = false;
   BlocklyApps.log = [];
   BlocklyApps.ticks = 1000000;
 
@@ -277,9 +283,6 @@ Turtle.animate = function() {
     return;
   }
   var command = tuple.shift();
-  if (command == "PS") {
-    debugger
-  }
   BlocklyApps.highlight(tuple.pop());
   Turtle.step(command, tuple);
   Turtle.display();
@@ -294,62 +297,108 @@ Turtle.animate = function() {
  * @param {string} command Logo-style command (e.g. 'FD' or 'RT').
  * @param {!Array} values List of arguments for the command.
  */
+
+Turtle.fd = function(distance) {
+  if (Turtle.penDownValue) {
+    Turtle.ctxScratch.beginPath();
+    Turtle.ctxScratch.moveTo(Turtle.x, Turtle.y);
+  }
+  var distance = distance;
+  if (distance) {
+    Turtle.x += distance * Math.sin(2 * Math.PI * Turtle.heading / 360);
+    Turtle.y -= distance * Math.cos(2 * Math.PI * Turtle.heading / 360);
+    var bump = 0;
+  } else {
+    // WebKit (unlike Gecko) draws nothing for a zero-length line.
+    var bump = 0.1;
+  }
+  if (Turtle.penDownValue) {
+    Turtle.ctxScratch.lineTo(Turtle.x, Turtle.y + bump);
+    Turtle.ctxScratch.stroke();
+  }
+}
+
+Turtle.rt = function(angle) {
+  Turtle.heading += angle;
+  Turtle.heading %= 360;
+  if (Turtle.heading < 0) {
+    Turtle.heading += 360;
+  }
+}
+
+Turtle.pu = function() {
+  Turtle.penDownValue = false;
+}
+
+Turtle.pd = function() {
+  Turtle.penDownValue = true;
+}
+
+Turtle.pw = function(width) {
+  Turtle.ctxScratch.lineWidth = width;
+}
+
+Turtle.pc = function(colour) {
+  Turtle.ctxScratch.strokeStyle = colour;
+  Turtle.ctxScratch.fillStyle = colour;
+}
+
+Turtle.dp = function(text) {
+  Turtle.ctxScratch.save();
+  Turtle.ctxScratch.translate(Turtle.x, Turtle.y);
+  Turtle.ctxScratch.rotate(2 * Math.PI * (Turtle.heading - 90) / 360);
+  Turtle.ctxScratch.fillText(text, 0, 0);
+  Turtle.ctxScratch.restore();
+}
+
+Turtle.df = function(font, size, style) {
+  Turtle.ctxScratch.font = style + ' ' + size + 'pt ' + font;
+}
+
+Turtle.ht = function() {
+  Turtle.visible = false;
+}
+
+Turtle.st = function() {
+  Turtle.visible = true;
+}
+
+
 Turtle.step = function(command, values) {
+  var arg0 = values[0];
+  var arg1 = values[1];
+  var arg2 = values[2];
+
   switch (command) {
     case 'FD':  // Forward
-      if (Turtle.penDownValue) {
-        Turtle.ctxScratch.beginPath();
-        Turtle.ctxScratch.moveTo(Turtle.x, Turtle.y);
-      }
-      var distance = values[0];
-      if (distance) {
-        Turtle.x += distance * Math.sin(2 * Math.PI * Turtle.heading / 360);
-        Turtle.y -= distance * Math.cos(2 * Math.PI * Turtle.heading / 360);
-        var bump = 0;
-      } else {
-        // WebKit (unlike Gecko) draws nothing for a zero-length line.
-        var bump = 0.1;
-      }
-      if (Turtle.penDownValue) {
-        Turtle.ctxScratch.lineTo(Turtle.x, Turtle.y + bump);
-        Turtle.ctxScratch.stroke();
-      }
+      Turtle.fd(arg0)
       break;
     case 'RT':  // Right Turn
-      Turtle.heading += values[0];
-      Turtle.heading %= 360;
-      if (Turtle.heading < 0) {
-        Turtle.heading += 360;
-      }
+      Turtle.rt(arg0);
       break;
     case 'DP':  // Draw Print
-      Turtle.ctxScratch.save();
-      Turtle.ctxScratch.translate(Turtle.x, Turtle.y);
-      Turtle.ctxScratch.rotate(2 * Math.PI * (Turtle.heading - 90) / 360);
-      Turtle.ctxScratch.fillText(values[0], 0, 0);
-      Turtle.ctxScratch.restore();
+      Turtle.dp(arg0);
       break;
     case 'DF':  // Draw Font
-      Turtle.ctxScratch.font = values[2] + ' ' + values[1] + 'pt ' + values[0];
+      Turtle.df(arg0, arg1, arg2);
       break;
     case 'PU':  // Pen Up
-      Turtle.penDownValue = false;
+      Turtle.pu();
       break;
     case 'PD':  // Pen Down
-      Turtle.penDownValue = true;
+      Turtle.pd();
       break;
     case 'PW':  // Pen Width
-      Turtle.ctxScratch.lineWidth = values[0];
+      Turtle.pw(arg0);
       break;
     case 'PC':  // Pen Colour
-      Turtle.ctxScratch.strokeStyle = values[0];
-      Turtle.ctxScratch.fillStyle = values[0];
+      Turtle.pc(arg0);
       break;
     case 'HT':  // Hide Turtle
-      Turtle.visible = false;
+      Turtle.ht();
       break;
     case 'ST':  // Show Turtle
-      Turtle.visible = true;
+      Turtle.st();
       break;
   }
 };
@@ -370,53 +419,125 @@ Turtle.createImageLink = function() {
 // Turtle API.
 
 Turtle.moveForward = function(distance, id) {
-  BlocklyApps.log.push(['FD', distance, id]);
+  if (Turtle.blockMode) {
+    BlocklyApps.log.push(['FD', distance, id]);
+  }
+  else {
+    Turtle.fd(distance);
+    Turtle.display();
+  }
 };
 
 Turtle.moveBackward = function(distance, id) {
-  BlocklyApps.log.push(['FD', -distance, id]);
+  if (Turtle.blockMode) {
+    BlocklyApps.log.push(['FD', -distance, id]);
+  }
+  else {
+    Turtle.fd(-distance)
+    Turtle.display();
+  }
 };
 
 Turtle.turnRight = function(angle, id) {
-  BlocklyApps.log.push(['RT', angle, id]);
+  if (Turtle.blockMode) {
+    BlocklyApps.log.push(['RT', angle, id]);
+  }
+  else {
+    Turtle.rt(angle)
+    Turtle.display();
+  }
 };
 
 Turtle.turnLeft = function(angle, id) {
-  BlocklyApps.log.push(['RT', -angle, id]);
+  if (Turtle.blockMode) {
+    BlocklyApps.log.push(['RT', -angle, id]);
+  }
+  else {
+    Turtle.rt(-angle)
+    Turtle.display();
+  }
 };
 
 Turtle.penUp = function(id) {
-  BlocklyApps.log.push(['PU', id]);
+  if (Turtle.blockMode) {
+    BlocklyApps.log.push(['PU', id]);
+  }
+  else {
+    Turtle.pu();
+    Turtle.display();
+  }
 };
 
 Turtle.penDown = function(id) {
-  BlocklyApps.log.push(['PD', id]);
+  if (Turtle.blockMode) {
+    BlocklyApps.log.push(['PD', id]);
+  }
+  else {
+    Turtle.pd();
+    Turtle.display();
+  }
 };
 
 Turtle.penWidth = function(width, id) {
-  BlocklyApps.log.push(['PW', Math.max(width, 0), id]);
+  if (Turtle.blockMode) {
+    BlocklyApps.log.push(['PW', Math.max(width, 0), id]);
+  }
+  else {
+    Turtle.pw(width);
+    Turtle.display();
+  }
 };
 
 Turtle.penColour = function(colour, id) {
-  BlocklyApps.log.push(['PC', colour, id]);
+  if (Turtle.blockMode) {
+    BlocklyApps.log.push(['PC', colour, id]);
+  }
+  else {
+    Turtle.pc(colour);
+    Turtle.display();
+  }
 };
 
 Turtle.hideTurtle = function(id) {
-  BlocklyApps.log.push(['HT', id]);
+  if (Turtle.blockMode) {
+    BlocklyApps.log.push(['HT', id]);
+  }
+  else {
+    Turtle.hideTurtle();
+    Turtle.display();
+  }
+
 };
 
 Turtle.showTurtle = function(id) {
-  BlocklyApps.log.push(['ST', id]);
+  if (Turtle.blockMode) {
+    BlocklyApps.log.push(['ST', id]);
+  }
+  else {
+    Turtle.showTurtle();
+    Turtle.display();
+  }
+
 };
 
 Turtle.drawPrint = function(text, id) {
-  BlocklyApps.log.push(['DP', text, id]);
+  if (Turtle.blockMode) {
+    BlocklyApps.log.push(['DP', text, id]);
+  }
+  else {
+    Turtle.drawPrint(text);
+    Turtle.display();
+  }
+
 };
 
 Turtle.drawFont = function(font, size, style, id) {
-  BlocklyApps.log.push(['DF', font, size, style, id]);
-};
+  if (Turtle.blockMode) {
+    BlocklyApps.log.push(['DF', font, size, style, id]);
+  }
+  else {
+    Turtle.df(font, size, style);
+    Turtle.display();
+  }
 
-Turtle.pause = function() {
-  BlocklyApps.log.push(['PS']);
-}
+};

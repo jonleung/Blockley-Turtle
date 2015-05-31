@@ -27,7 +27,7 @@ Mod.initializeEditor = function() {
 	var savedCustomCode = localStorage.getItem('editor');
 	ace.edit("editor").setValue(savedCustomCode);
 
-	$("#editor").keypress(function(e){
+	$("#editor").keydown(function(e){
 		var currentCode = Mod.getCurrentCode();
 
 		if (e.ctrlKey && e.keyCode == 13) {
@@ -42,6 +42,10 @@ Mod.initializeEditor = function() {
 
 
 Mod.executeTurtleCode = function(code) {
+	Turtle.reset();
+
+	Turtle.blockMode = false;
+
 	BlocklyApps.log = [];
 	BlocklyApps.ticks = 1000000;
 	
@@ -54,11 +58,6 @@ Mod.executeTurtleCode = function(code) {
 	    alert(e);
 	  }
 	}
-
-	// BlocklyApps.log now contains a transcript of all the user's actions.
-	// Reset the graphic and animate the transcript.
-	Turtle.reset();
-	Turtle.pid = window.setTimeout(Turtle.animate, 100);
 }
 
 Mod.getCurrentCode = function() {
@@ -69,5 +68,4 @@ Mod.getCurrentCode = function() {
 $(document).ready(function() {
 	Mod.initView();
 	Mod.initializeEditor();
-
 });
