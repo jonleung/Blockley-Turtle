@@ -28,6 +28,30 @@
  */
 var Turtle = {};
 Turtle.blockMode = false;
+Turtle.displayAtEnd = false;
+Turtle.ticks = 0;
+
+Turtle.modDisplay = function() {
+  Turtle.ticks += 1;
+
+  console.log(Turtle.ticks)
+  if (Turtle.ticks > 5000) {
+    var action = confirm("Infinite Loop Detected! Do you want to stop it?")
+    if (action === true) {
+      throw "Infinite Loop..."  
+    }
+    
+  }
+  if(Turtle.displayAtEnd) {
+
+  }
+  else {
+    if (Turtle.slowAnimation) {
+      // Mod.delay(1000);
+    }
+    Turtle.display();
+  }
+}
 
 // Supported languages.
 BlocklyApps.LANGUAGES =
@@ -138,7 +162,9 @@ window.addEventListener('load', Turtle.init);
  * pending tasks.
  */
 Turtle.reset = function() {
+  Turtle.ticks = 0;
   Turtle.moving = false;
+  Turtle.slowAnimation = false;
   // Starting location and heading of the turtle.
   Turtle.x = Turtle.HEIGHT / 2;
   Turtle.y = Turtle.WIDTH / 2;
@@ -424,7 +450,7 @@ Turtle.moveForward = function(distance, id) {
   }
   else {
     Turtle.fd(distance);
-    Turtle.display();
+    Turtle.modDisplay();
   }
 };
 
@@ -434,7 +460,7 @@ Turtle.moveBackward = function(distance, id) {
   }
   else {
     Turtle.fd(-distance)
-    Turtle.display();
+    Turtle.modDisplay();
   }
 };
 
@@ -444,7 +470,7 @@ Turtle.turnRight = function(angle, id) {
   }
   else {
     Turtle.rt(angle)
-    Turtle.display();
+    Turtle.modDisplay();
   }
 };
 
@@ -454,7 +480,7 @@ Turtle.turnLeft = function(angle, id) {
   }
   else {
     Turtle.rt(-angle)
-    Turtle.display();
+    Turtle.modDisplay();
   }
 };
 
@@ -464,7 +490,7 @@ Turtle.penUp = function(id) {
   }
   else {
     Turtle.pu();
-    Turtle.display();
+    Turtle.modDisplay();
   }
 };
 
@@ -474,7 +500,7 @@ Turtle.penDown = function(id) {
   }
   else {
     Turtle.pd();
-    Turtle.display();
+    Turtle.modDisplay();
   }
 };
 
@@ -484,7 +510,7 @@ Turtle.penWidth = function(width, id) {
   }
   else {
     Turtle.pw(width);
-    Turtle.display();
+    Turtle.modDisplay();
   }
 };
 
@@ -494,7 +520,7 @@ Turtle.penColour = function(colour, id) {
   }
   else {
     Turtle.pc(colour);
-    Turtle.display();
+    Turtle.modDisplay();
   }
 };
 
@@ -504,7 +530,7 @@ Turtle.hideTurtle = function(id) {
   }
   else {
     Turtle.hideTurtle();
-    Turtle.display();
+    Turtle.modDisplay();
   }
 
 };
@@ -515,7 +541,7 @@ Turtle.showTurtle = function(id) {
   }
   else {
     Turtle.showTurtle();
-    Turtle.display();
+    Turtle.modDisplay();
   }
 
 };
@@ -526,7 +552,7 @@ Turtle.drawPrint = function(text, id) {
   }
   else {
     Turtle.drawPrint(text);
-    Turtle.display();
+    Turtle.modDisplay();
   }
 
 };
@@ -537,7 +563,7 @@ Turtle.drawFont = function(font, size, style, id) {
   }
   else {
     Turtle.df(font, size, style);
-    Turtle.display();
+    Turtle.modDisplay();
   }
 
 };
