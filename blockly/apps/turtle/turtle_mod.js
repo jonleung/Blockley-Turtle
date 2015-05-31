@@ -66,7 +66,7 @@ Mod.getCurrentCode = function() {
 }
 
 
-$( document ).ready(function() {
+$(document).ready(function() {
 	Mod.initView();
 	Mod.initializeEditor();
 

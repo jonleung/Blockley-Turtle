@@ -277,6 +277,9 @@ Turtle.animate = function() {
     return;
   }
   var command = tuple.shift();
+  if (command == "PS") {
+    debugger
+  }
   BlocklyApps.highlight(tuple.pop());
   Turtle.step(command, tuple);
   Turtle.display();
@@ -413,3 +416,7 @@ Turtle.drawPrint = function(text, id) {
 Turtle.drawFont = function(font, size, style, id) {
   BlocklyApps.log.push(['DF', font, size, style, id]);
 };
+
+Turtle.pause = function() {
+  BlocklyApps.log.push(['PS']);
+}
