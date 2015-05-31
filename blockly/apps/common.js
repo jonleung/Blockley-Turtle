@@ -552,7 +552,6 @@ BlocklyApps.dialogMouseMove_ = function(e) {
  * @private
  */
 BlocklyApps.dialogUnbindDragEvents_ = function() {
-  alert("UNBINDED");
   if (BlocklyApps.dialogMouseUpWrapper_) {
     Blockly.unbindEvent_(BlocklyApps.dialogMouseUpWrapper_);
     BlocklyApps.dialogMouseUpWrapper_ = null;
