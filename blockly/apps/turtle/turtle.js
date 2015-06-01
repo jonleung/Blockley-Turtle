@@ -34,7 +34,7 @@ Turtle.ticks = 0;
 Turtle.modDisplay = function() {
   Turtle.ticks += 1;
 
-  console.log(Turtle.ticks)
+  // console.log(Turtle.ticks)
   if (Turtle.ticks > 5000) {
     var action = confirm("Infinite Loop Detected! Do you want to stop it?")
     if (action === true) {
