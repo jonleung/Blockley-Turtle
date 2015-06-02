@@ -733,6 +733,7 @@ BlocklyApps.showCode = function(e) {
     code = prettyPrintOne(code, 'js');
     pre.innerHTML = code;
   }
+  debugger
 
   var content = document.getElementById('dialogCode');
   var style = {

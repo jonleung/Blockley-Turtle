@@ -90,8 +90,27 @@ Mod.getCurrentCode = function() {
 	return ace.edit("editor").getValue();
 }
 
+Mod.getCodeAsHtml = function() {
+	var code = Blockly.JavaScript.workspaceToCode();
+	code = BlocklyApps.stripCode(code);
+	var pre = document.getElementById('containerCode');
+	pre.textContent = code;
+	if (typeof prettyPrintOne == 'function') {
+	  code = pre.innerHTML;
+	  code = prettyPrintOne(code, 'js');
+	  pre.innerHTML = code;
+	}
+	return code;
+}
+
 
 $(document).ready(function() {
 	Mod.initView();
 	Mod.initializeEditor();
+	$(document).on("mouseup", function() {
+		var code = Mod.getCodeAsHtml();
+		debugger
+		$("#exported").html(code);
+	})
+
 });
