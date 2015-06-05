@@ -108,9 +108,10 @@ $(document).ready(function() {
 	Mod.initView();
 	Mod.initializeEditor();
 	$(document).on("mouseup", function() {
-		var code = Mod.getCodeAsHtml();
-		debugger
-		$("#exported").html(code);
-	})
+		setTimeout(function(){
+			var code = Mod.getCodeAsHtml();
+			$("#exported").html(code);
+		}, 100);
+	});
 
 });
