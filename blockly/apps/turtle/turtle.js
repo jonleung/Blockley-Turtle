@@ -162,8 +162,6 @@ window.addEventListener('load', Turtle.init);
  * pending tasks.
  */
 Turtle.reset = function() {
-  BlocklyApps.log = [];
-
   Turtle.ticks = 0;
   Turtle.moving = false;
   Turtle.slowAnimation = false;
@@ -188,6 +186,8 @@ Turtle.reset = function() {
     window.clearTimeout(Turtle.pid);
   }
   Turtle.pid = 0;
+
+  Turtle.blockMode = true;
 };
 
 /**
