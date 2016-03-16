@@ -112,6 +112,7 @@ $(document).ready(function() {
 			var code = Mod.getCodeAsHtml();
 			$("#exported").html(code);
 		}, 100);
+		
 	});
 
 });
